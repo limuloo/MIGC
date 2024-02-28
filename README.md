@@ -2,13 +2,14 @@
 # [CVPR2024] MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis
 ### [[Paper]](https://arxiv.org/pdf/2402.05408.pdf)     [[Project Page]](https://migcproject.github.io/)
 **MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis**
-<br>_Dewei Zhou, You Li, Fan Ma, Zongxin Yang, Yi Yang_<br>
+<br>_Dewei Zhou, You Li, Fan Ma, Xiaoting Zhang, Yi Yang_<br>
 ## To Do List
 - [x] Project Page
 - [ ] Code
+- [ ] COCO-MIG Benchmark
 - [ ] Pretrained Weights on SD1.4
-- [ ] Pretrained Weights on SDXL
 - [ ] WebUI
+- [ ] Pretrained Weights on SDXL
 ## Gallery
 ![attr_control](figures/attr_control.png)
 ![quantity_control](figures/quantity_control.png)
