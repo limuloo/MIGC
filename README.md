@@ -38,7 +38,7 @@ Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/1v5ik-94qlf
 │   ├── ...
 ```
 
-### Single Image Generation
+## Single Image Generation
 By using the following command, you can quickly generate an image with MIGC.
 ```
 CUDA_VISIBLE_DEVICES=0 python inference_single_image.py
@@ -179,13 +179,13 @@ We sampled [800 images](https://drive.google.com/drive/folders/1UyhNpZ099OTPy5IL
 
 
 
-### MIGC-GUI
+## MIGC-GUI
 We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to make art creation more convenient for users, and we will release our code in the next few days.
 
 ![Demo1](videos/video1.gif)
 
 
-### MIGC + LoRA
+## MIGC + LoRA
 MIGC can achieve powerful attribute and orientation control capabilities while combining with Lora. We will open this feature when we release the code of MIGC-GUI.
 ![MIGCLora_ID](figures/migc_lora_id.png){:height="200px" width="200px"}![MIGCLora](figures/migc_lora.png){:height="200px" width="200px"}![MIGCLora_annotation](figures/migc_lora_anno.png){:height="200px" width="200px"}
 ![MIGCLora_Creation](figures/migc_lora_gui_creation.png)
