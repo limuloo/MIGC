@@ -1,0 +1,7 @@
+*/__pycache__
+little_test.py
+*.egg-info
+mig_bench
+pretrained_weights/MIGC_SD14.ckpt
+anno_output.png
+output.png
