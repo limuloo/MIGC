@@ -186,9 +186,13 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 
 ## MIGC + LoRA
-MIGC can achieve powerful attribute and orientation control capabilities while combining with Lora. We will open this feature when we release the code of MIGC-GUI.
-![MIGCLora_ID](figures/migc_lora_id.png){:height="200px" width="200px"}![MIGCLora](figures/migc_lora.png){:height="200px" width="200px"}![MIGCLora_annotation](figures/migc_lora_anno.png){:height="200px" width="200px"}
-![MIGCLora_Creation](figures/migc_lora_gui_creation.png)
+MIGC can achieve powerful attribute-and-position control capabilities while combining with LoRA. We will open this feature when we release the code of MIGC-GUI.
+<p align="center">
+  <img src="figures/migc_lora_id.png" alt="migc_lora_id" width="190" height="300"/>
+  <img src="figures/migc_lora.png" alt="migc_lora" width="190" height="300"/>
+  <img src="figures/migc_lora_anno.png" alt="migc_lora_anno" width="190" height="300"/>
+  <img src="figures/migc_lora_gui_creation.png" alt="migc_lora_gui_creation" width="580" height="300"/>
+</p>
 
 ## Contact us
 If you have any questions, feel free to contact me via email zdw1999@zju.edu.cn 
