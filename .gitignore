@@ -5,3 +5,9 @@ mig_bench
 pretrained_weights/MIGC_SD14.ckpt
 anno_output.png
 output.png
+anno_outputv2.png
+outputv2.png
+huawei_bench_file
+inference_huawei.py
+HUAWEI
+migc_gui
