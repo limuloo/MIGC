@@ -26,7 +26,7 @@ import argparse
 import yaml
 import cv2
 import math
-from migc.migc_arch import MIGC
+from migc.migc_arch import MIGC, NaiveFuser
 
 
 logger = logging.get_logger(__name__)
@@ -87,7 +87,11 @@ class MIGCProcessor(nn.Module):
         self.place_in_unet = place_in_unet
         self.not_use_migc = config['not_use_migc']
         if not self.not_use_migc:
-            self.migc = MIGC(config['C'])
+            fuser_type = config['fuser_type'] if 'fuser_type' in config else 'MIGC'
+            if fuser_type == 'MIGC':
+                self.migc = MIGC(config['C'])
+            else:
+                self.migc = NaiveFuser()
 
     def __call__(
             self,

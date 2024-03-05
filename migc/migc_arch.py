@@ -193,3 +193,28 @@ class MIGC(nn.Module):
             return out_MIGC, fuser_info
         else:
             return out_MIGC
+
+
+class NaiveFuser(nn.Module):
+    def __init__(self):
+        super().__init__()
+    def forward(self, ca_x, guidance_mask, other_info, return_fuser_info=False):
+        # ca_x: (B, instance_num+1, HW, C)
+        # guidance_mask: (B, instance_num, H, W)
+        # box: (instance_num, 4)
+        # image_token: (B, instance_num+1, HW, C)
+        full_H = other_info['height']
+        full_W = other_info['width']
+        B, _, HW, C = ca_x.shape
+        instance_num = guidance_mask.shape[1]
+        down_scale = int(math.sqrt(full_H * full_W // ca_x.shape[2]))
+        H = full_H // down_scale
+        W = full_W // down_scale
+        guidance_mask = F.interpolate(guidance_mask, size=(H, W), mode='bilinear')   # (B, instance_num, H, W)
+        guidance_mask = torch.cat([torch.ones(B, 1, H, W).to(guidance_mask.device), guidance_mask * 10], dim=1)  # (B, instance_num+1, H, W)
+        guidance_mask = guidance_mask.view(B, instance_num + 1, HW, 1)
+        out_MIGC = (ca_x * guidance_mask).sum(dim=1) / (guidance_mask.sum(dim=1) + 1e-6)
+        if return_fuser_info:
+            return out_MIGC, None
+        else:
+            return out_MIGC

@@ -50,8 +50,17 @@ The following is an example of the generated image based on stable diffusion v1.
   <img src="figures/MIGC_SD14_out_anno.png" alt="example_annotation" width="200" height="200"/>
 </p>
 
+🚀 **Enhanced Attribute Control**: For those seeking finer control over attribute management, consider exploring the `inferencev2_single_image.py` script. This advanced version, `InferenceV2`, offers a significant improvement in mitigating attribute leakage issues. By accepting a slight increase in inference time, it enhances the Instance Success Ratio from 66% to an impressive 68% on COCO-MIG Benchmark.
 
-It's worth noting that MIGC is a plug-and-play controller, so you can generate a wider variety and higher quality images similar to [Gallery](#Gallery) by simply replacing different base generator weights. For example, [Cetus-Mix](https://civitai.com/models/6755/cetus-mix) is a stronger base model for animation creation. [RV60B1](https://civitai.com/search/models?sortBy=models_v5&query=RealisticVision) can generate more realistic details.
+<p align="center">
+  <img src="figures/infer_v2_demo.png" alt="example" width="1000" height="300"/>
+</p>
+
+💡 **Versatile Image Generation**: MIGC stands out as a plug-and-play controller, enabling the creation of images with unparalleled variety and quality. By simply swapping out different base generator weights, you can achieve results akin to those showcased in our [Gallery](#Gallery). For instance:
+
+- 🎨 **[Cetus-Mix](https://civitai.com/models/6755/cetus-mix)**: This robust base model excels in crafting animated content, elevating your creative projects with its unique capabilities.
+- 🌆 **[RV60B1](https://civitai.com/search/models?sortBy=models_v5&query=RealisticVision)**: Ideal for those seeking lifelike detail, RV60B1 specializes in generating images with stunning realism.
+
 
 
 ## COCO-MIG Bench
