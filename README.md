@@ -62,7 +62,7 @@ The following is an example of the generated image based on stable diffusion v1.
 - 🌆 **[RV60B1](https://civitai.com/models/4201/realistic-vision-v60-b1)**: Ideal for those seeking lifelike detail, RV60B1 specializes in generating images with stunning realism.
 - 🎨 **[Cetus-Mix](https://civitai.com/models/6755/cetus-mix)** and **[Ghost](https://civitai.com/models/36520/ghostmix)**: These robust base models excel in crafting animated content.
 <p align="center">
-  <img src="figures/diverse_base_model.png" alt="example" width="1000" height="266"/>
+  <img src="figures/diverse_base_model.png" alt="example" width="1000" height="230"/>
 </p>
 
 
