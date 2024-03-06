@@ -23,8 +23,8 @@ if __name__ == '__main__':
     pipe = MIGCPipeline.from_pretrained(
         sd1x_path)
     pipe.attention_store = AttentionStore()
-    from migc.migc_utils import load_migc_v2
-    load_migc_v2(pipe.unet , pipe.attention_store,
+    from migc.migc_utils import load_migc
+    load_migc(pipe.unet , pipe.attention_store,
             migc_ckpt_path, attn_processor=MIGCProcessor)
     pipe = pipe.to("cuda")
     pipe.scheduler = EulerDiscreteScheduler.from_config(pipe.scheduler.config)
@@ -57,7 +57,7 @@ if __name__ == '__main__':
             seed_everything(seed)
             for i in range(num_iter):
                 image = pipe(prompt_final, bboxes, num_inference_steps=50, guidance_scale=7.5, 
-                                MIGCsteps=25, aug_phase_with_and=True).images[0]
+                                MIGCsteps=25, NaiveFuserSteps=25, aug_phase_with_and=True).images[0]
                 image.save(os.path.join(path_name, f"{img_name}_{seed}{i}_{coco_id}.png"))
                 image = pipe.draw_box_desc(image, bboxes[0], prompt_final[0][1:])
                 image.save(os.path.join(path_name, f"anno_{img_name}_{seed}{i}_{coco_id}.png"))

@@ -86,12 +86,9 @@ class MIGCProcessor(nn.Module):
         self.attnstore = attnstore
         self.place_in_unet = place_in_unet
         self.not_use_migc = config['not_use_migc']
+        self.naive_fuser = NaiveFuser()
         if not self.not_use_migc:
-            fuser_type = config['fuser_type'] if 'fuser_type' in config else 'MIGC'
-            if fuser_type == 'MIGC':
-                self.migc = MIGC(config['C'])
-            else:
-                self.migc = NaiveFuser()
+            self.migc = MIGC(config['C'])
 
     def __call__(
             self,
@@ -107,6 +104,7 @@ class MIGCProcessor(nn.Module):
             height=512,
             width=512,
             MIGCsteps=20,
+            NaiveFuserSteps=-1,
             ca_scale=None,
             ea_scale=None,
             sac_scale=None
@@ -124,15 +122,16 @@ class MIGCProcessor(nn.Module):
             not_use_migc = True
         else:
             not_use_migc = self.not_use_migc
+        is_vanilla_cross = (not_use_migc and ith > NaiveFuserSteps)
 
         is_cross = encoder_hidden_states is not None
 
         # Only Need Negative Prompt and Global Prompt.
-        if is_cross and not_use_migc:
+        if is_cross and is_vanilla_cross:
             encoder_hidden_states = encoder_hidden_states[:2, ...]
 
-        # In this case, we need to use MIGC, so we copy the hidden_states_cond (instance_num+1) times for QKV
-        if is_cross and not not_use_migc:
+        # In this case, we need to use MIGC or naive_fuser, so we copy the hidden_states_cond (instance_num+1) times for QKV
+        if is_cross and not is_vanilla_cross:
             hidden_states_uncond = hidden_states[[0], ...]
             hidden_states_cond = hidden_states[[1], ...].repeat(instance_num + 1, 1, 1)
             hidden_states = torch.cat([hidden_states_uncond, hidden_states_cond])
@@ -161,11 +160,11 @@ class MIGCProcessor(nn.Module):
             return hidden_states
 
         ###### Vanilla Cross-Attention Results ######
-        if is_cross and not_use_migc:
+        if is_vanilla_cross:
             return hidden_states
         
         ###### Cross-Attention with MIGC ######
-        assert (is_cross and not not_use_migc)
+        assert (not is_vanilla_cross)
         # hidden_states: torch.Size([1+1+instance_num, HW, C]), the first 1 is the uncond ca output, the second 1 is the global ca output.
         hidden_states_uncond = hidden_states[[0], ...]  # torch.Size([1, HW, C])
         cond_ca_output = hidden_states[1: , ...].unsqueeze(0)  # torch.Size([1, 1+instance_num, 5, 64, 1280])
@@ -209,7 +208,13 @@ class MIGCProcessor(nn.Module):
         other_info['ea_scale'] = ea_scale
         other_info['sac_scale'] = sac_scale
 
-        hidden_states_cond, fuser_info = self.migc(cond_ca_output,
+        if not not_use_migc:
+            hidden_states_cond, fuser_info = self.migc(cond_ca_output,
+                                            guidance_masks,
+                                            other_info=other_info,
+                                            return_fuser_info=True)
+        else:
+            hidden_states_cond, fuser_info = self.naive_fuser(cond_ca_output,
                                             guidance_masks,
                                             other_info=other_info,
                                             return_fuser_info=True)
@@ -619,6 +624,7 @@ class MIGCPipeline(StableDiffusionPipeline):
             callback_steps: int = 1,
             cross_attention_kwargs: Optional[Dict[str, Any]] = None,
             MIGCsteps=20,
+            NaiveFuserSteps=-1,
             ca_scale=None,
             ea_scale=None,
             sac_scale=None,
@@ -790,6 +796,7 @@ class MIGCPipeline(StableDiffusionPipeline):
                                           'height': height,
                                           'width': width,
                                           'MIGCsteps': MIGCsteps,
+                                          'NaiveFuserSteps': NaiveFuserSteps,
                                           'ca_scale': ca_scale,
                                           'ea_scale': ea_scale,
                                           'sac_scale': sac_scale}
