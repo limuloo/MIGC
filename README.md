@@ -59,8 +59,11 @@ The following is an example of the generated image based on stable diffusion v1.
 
 💡 **Versatile Image Generation**: MIGC stands out as a plug-and-play controller, enabling the creation of images with unparalleled variety and quality. By simply swapping out different base generator weights, you can achieve results akin to those showcased in our [Gallery](#Gallery). For instance:
 
-- 🎨 **[Cetus-Mix](https://civitai.com/models/6755/cetus-mix)**: This robust base model excels in crafting animated content, elevating your creative projects with its unique capabilities.
-- 🌆 **[RV60B1](https://civitai.com/search/models?sortBy=models_v5&query=RealisticVision)**: Ideal for those seeking lifelike detail, RV60B1 specializes in generating images with stunning realism.
+- 🌆 **[RV60B1](https://civitai.com/models/4201/realistic-vision-v60-b1)**: Ideal for those seeking lifelike detail, RV60B1 specializes in generating images with stunning realism.
+- 🎨 **[Cetus-Mix](https://civitai.com/models/6755/cetus-mix)** and **[Ghost](https://civitai.com/models/36520/ghostmix)**: These robust base models excel in crafting animated content.
+<p align="center">
+  <img src="figures/diverse_base_model.png" alt="example" width="1000" height="266"/>
+</p>
 
 
 
