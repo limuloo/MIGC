@@ -118,11 +118,13 @@ class MIGCProcessor(nn.Module):
         
         instance_num = len(bboxes[0])
 
-        if instance_num == 0 or ith > MIGCsteps:
+        if ith > MIGCsteps:
             not_use_migc = True
         else:
             not_use_migc = self.not_use_migc
         is_vanilla_cross = (not_use_migc and ith > NaiveFuserSteps)
+        if instance_num == 0:
+            is_vanilla_cross = True
 
         is_cross = encoder_hidden_states is not None
 

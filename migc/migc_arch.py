@@ -173,7 +173,7 @@ class MIGC(nn.Module):
             ca_x[:, 1:, ...] = ca_x[:, 1:, ...] + ea_x
 
         ori_image_token = image_token[:, 0, ...]  # (B, HW, C)
-        fusion_template = self.la(x=ori_image_token, guidance_mask=torch.cat([guidance_mask[:, 1:, ...], supplement_mask], dim=1))  # (B, HW, C)
+        fusion_template = self.la(x=ori_image_token, guidance_mask=torch.cat([guidance_mask[:, :, ...], supplement_mask], dim=1))  # (B, HW, C)
         fusion_template = fusion_template.view(B, 1, HW, C)  # (B, 1, HW, C)
 
         ca_x = torch.cat([ca_x, fusion_template], dim = 1)
