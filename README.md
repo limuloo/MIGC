@@ -10,6 +10,7 @@
 - [x] COCO-MIG Benchmark
 - [x] Pretrained Weights on SD1.4
 - [ ] WebUI
+- [ ] Colab Demo
 - [ ] Pretrained Weights on SDXL
 <a id="Gallery"></a>
 ## Gallery
