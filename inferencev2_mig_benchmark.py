@@ -1,7 +1,7 @@
 import yaml
 from diffusers import EulerDiscreteScheduler
 from migc.migc_utils import seed_everything
-from migc.migc_pipeline import MIGCPipeline, MIGCProcessor, AttentionStore
+from migc.migc_pipeline import StableDiffusionMIGCPipeline, MIGCProcessor, AttentionStore
 import os
 
 
@@ -20,7 +20,7 @@ if __name__ == '__main__':
         annatation_data = yaml.load(cfg, Loader=yaml.FullLoader)
 
     # Construct MIGC pipeline
-    pipe = MIGCPipeline.from_pretrained(
+    pipe = StableDiffusionMIGCPipeline.from_pretrained(
         sd1x_path)
     pipe.attention_store = AttentionStore()
     from migc.migc_utils import load_migc

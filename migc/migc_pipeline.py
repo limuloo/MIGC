@@ -226,7 +226,7 @@ class MIGCProcessor(nn.Module):
         return hidden_states
 
 
-class MIGCPipeline(StableDiffusionPipeline):
+class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
     def __init__(
             self,
             vae: AutoencoderKL,

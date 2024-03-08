@@ -1,7 +1,7 @@
 import yaml
 from diffusers import EulerDiscreteScheduler
 from migc.migc_utils import seed_everything
-from migc.migc_pipeline import MIGCPipeline, MIGCProcessor, AttentionStore
+from migc.migc_pipeline import StableDiffusionMIGCPipeline, MIGCProcessor, AttentionStore
 import os
 
 
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # You can go to https://civitai.com/search/models?baseModel=SD%201.4&baseModel=SD%201.5&sortBy=models_v5 find a base model with better generation ability to achieve better creations.
     
     # Construct MIGC pipeline
-    pipe = MIGCPipeline.from_pretrained(
+    pipe = StableDiffusionMIGCPipeline.from_pretrained(
         sd1x_path)
     pipe.attention_store = AttentionStore()
     from migc.migc_utils import load_migc
