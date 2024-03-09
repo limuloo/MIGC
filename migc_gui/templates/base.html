@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIGC Editor</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/static/toast.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+
+  <body>
+    <div id="toast-container">
+      <!-- <div class="toast">
+        <div class="toast-header-row">
+          <div class="toast-header">prompt queued!</div>
+          <button class="toast-close-button">🗙</button>
+        </div>
+        <p>Toast body</p>
+      </div>
+
+      <div class="toast">
+        <div class="toast-header-row">
+          <div class="toast-header">Toast 2!</div>
+          <button class="toast-close-button">🗙</button>
+        </div>
+        <p>Toast body</p>
+      </div> -->
+    </div>
+    <main>
+      <div class="row">
+        <div class="column column-canvas">
+          <div class="row">
+            <div class="canvas-container">
+              <canvas id="canvas_image" style="z-index: 0"></canvas>
+              <canvas id="canvas_main" style="z-index: 1"></canvas>
+              <canvas id="canvas_temp" style="z-index: 2"></canvas>
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="card">
+            <fieldset>
+            <div class="row button-row button-row--left">
+              <button id="download-image" onclick="downloadImage()">
+                download image
+              </button>
+              <div>
+                <input type="file" id="fileInput" style="display: none" />
+                <label for="fileInput" class="filepicker-button"
+                  >set canvas backdrop</label
+                >
+              </div>
+              <!-- <button onclick="testToast()">load image</button> -->
+            </div>
+            </fieldset>
+            <div class="vertical-spacer-1"></div>
+            
+            <fieldset>
+              <legend>image dimensions</legend>
+
+              <div class="image-size-grid">
+              <input
+                    id="width"
+                    type="number"
+                    step="1"
+                    min="1"
+                    placeholder="width"
+                  />
+                  <div class="x-container">×</div>
+                  <input
+                  id="height"
+                  type="number"
+                  step="1"
+                  min="1"
+                  placeholder="height"
+                />
+                <button onclick="updateCanvasSize()">update</button>
+              </div>
+            <div class="vertical-spacer-1"></div>
+<div class="button-row button-row--left">
+  <button onclick="setCanvasSize(512,512)">512×512</button> <button onclick="setCanvasSize(768,768)">768×768</button> <button onclick="setCanvasSize(1024,1024)">1024×1024</button>
+</div>
+            </fieldset>
+          
+            </div>
+          </div>
+          <div class="row">
+            <div class="card">
+              <!-- <fieldset><legend>seed</legend></fieldset> -->
+              <!-- <div class="vertical-spacer-1_5"></div> -->
+
+              <fieldset>
+                <legend>checkpoint</legend>
+                <div class="dropdown" id="checkpoint"></div>
+              </fieldset>
+              <div class="vertical-spacer-1_5"></div>
+              <fieldset>
+                <legend>sampling</legend>
+                <div class="sampler-params-grid">
+                  <label class="grid-label">Steps</label>
+                  <input
+                    id="steps"
+                    type="number"
+                    step="1"
+                    min="1"
+                    max="10000"
+                    value="20"
+                    placeholder="20"
+                  />
+                  <label class="grid-label">MIGCSteps</label>
+                  <input
+                    id="MIGCsteps"
+                    type="number"
+                    step="1"
+                    min="1"
+                    max="10000"
+                    value="10"
+                    placeholder="10"
+                  />
+                </div>
+                <div class="sampler-params-grid">
+                  <label class="grid-label">NaiveFuserSteps</label>
+                  <input
+                    id="NaiveFuserSteps"
+                    type="number"
+                    step="1"
+                    min="1"
+                    max="10000"
+                    value="10"
+                    placeholder="10"
+                  />
+                  <label class="grid-label">cfg</label>
+                  <input
+                    id="cfg"
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="100"
+                    value="8.0"
+                    placeholder="8.0"
+                  />
+                </div>
+                <!-- <div class="sampler-params-grid2">
+                  <label class="grid-label">Sampler</label>
+                  <div class="dropdown grid-dropdown" id="sampler"></div>
+                </div> -->
+                <div class="seed-grid">
+                  <label class="grid-seed-label">seed</label>
+                  <input
+                    class="grid-seed-input"
+                    id="seed"
+                    type="number"
+                    step="1"
+                    min="0"
+                  />
+                  <div
+                    class="icon-button"
+                    id="random-seed"
+                    title="Generate random seed"
+                  >
+                    <img src="/static/images/dice.svg" />
+                  </div>
+                  <div
+                    class="icon-button"
+                    id="reuse-seed"
+                    title="Reuse the current seed"
+                  >
+                    <img src="/static/images/recycle.svg" />
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="card">
+              <fieldset>
+                <legend>LORA(Wait to do)</legend>
+                <div id="lora-list">
+                  <!-- <div class="lora-selector-grid">
+                    <div class="dropdown lora-name">
+                      <div class="dropdown-target"></div>
+                      <div class="dropdown-content"></div>
+                    </div>
+                    <input
+                      class="lora-strength"
+                      type="number"
+                      step="0.1"
+                      min="-20"
+                      max="20"
+                      value="1.0"
+                      placeholder="1.0"
+                    />
+                    <div class="icon-button">
+                      <img src="/static/delete.svg" />
+                    </div>
+                  </div> -->
+                </div>
+                <div id="phantom-space"></div>
+                <div class="button-row button-row--centered">
+                  <button class="add-lora" id="add-lora">
+                    <img src="/static/images/add.svg" />
+                  </button>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="row">
+            <div class="card">
+              <div class="row button-row button-row--left">
+                <button id="queue-prompt" onclick="generateImage()">
+                  GENERATE
+                </button>
+                <!-- <button onclick="postInputArgs()">POST</button> -->
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card">
+              <div class="row">
+                <div class="progress-bar-container">
+                  <div class="progress-bar-bg"></div>
+                  <div id="progress-bar"></div>
+                </div>
+                <!-- <button id="queue-prompt" onclick="queuePrompt()"> -->
+                <!-- QUEUE PROMPT -->
+                <!-- </button> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card">
+              <fieldset>
+                <legend>conditioning</legend>
+                <div class="grounding-boxes-grid">
+                  <div class="label-textarea">grounding boxes</div>
+                  <div class="label-textarea">CA Scale</div>
+                  <div class="label-textarea">EA Scale</div>
+                  <div class="label-textarea">SAC Scale</div>
+                </div>
+                
+
+                <div id="grounding-boxes">
+                  <!-- <div
+                  class="grounding-boxes-grid"
+                  id="grounding-boxes-grid"
+                ></div> -->
+                </div>
+                <div class="row button-row button-row--left">
+                  <button id="show-all">SHOW ALL</button>
+                  <button id="hide-all">HIDE ALL</button>
+                  <button id="delete-all">DELETE ALL</button>
+                  <button id="generate-layout">GENERATE LAYOUT</button>
+                </div>
+                <div class="vertical-spacer-1_5"></div>
+                <!-- </fieldset>
+              <div class="vertical-spacer-1_5"></div>
+              <fieldset> -->
+                <!-- <legend>conditioning</legend> -->
+                <div class="label-textarea">positive</div>
+                <textarea
+                  id="positive-conditioning"
+                  name="positive-conditioning"
+                  rows="4"
+                  placeholder="(4k, best quality, masterpiece:1.2), ultra high res, ultra detailed"
+                ></textarea>
+                <div class="vertical-spacer-1_5"></div>
+                <div class="label-textarea">negative</div>
+                <textarea
+                  id="negative-conditioning"
+                  name="negative-conditioning"
+                  rows="4"
+                ></textarea>
+                <div class="label-textarea">layout</div>
+                <textarea
+                  id="output-layout"
+                  name="output-layout"
+                  rows="100"
+                ></textarea>
+                <!-- <div class="vertical-spacer-1_5"></div> -->
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <a
+          href="https://github.com/mut-ex"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <footer>Made by mut-ex - (V{{version_number}})</footer></a
+        >
+      </div>
+    </main>
+  </body>
+  <script>var secret_message="test"</script>
+  <script src="static/js/nodes.js"></script>
+  <script src="static/js/draw.js"></script>
+
+  <script src="static/js/toast.js"></script>
+  <script src="static/js/extra.js"></script>
+  <script src="static/js/script.js"></script>
+</html>

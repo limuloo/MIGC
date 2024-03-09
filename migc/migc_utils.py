@@ -4,6 +4,13 @@ import torch
 import os
 import yaml
 import random
+from diffusers.utils.import_utils import is_accelerate_available
+from transformers import CLIPTextModel, CLIPTokenizer
+from migc.migc_pipeline import StableDiffusionMIGCPipeline, MIGCProcessor, AttentionStore
+from diffusers import EulerDiscreteScheduler
+if is_accelerate_available():
+    from accelerate import init_empty_weights
+from contextlib import nullcontext
 
 
 def seed_everything(seed):
@@ -152,3 +159,28 @@ def load_migc(unet, attention_store, pretrained_model_name_or_path_or_dict: Unio
             attn_processors[key] = attn_processor(config, attention_store, place_in_unet)
     unet.set_attn_processor(attn_processors)
     attention_store.num_att_layers = 32
+
+
+def offlinePipelineSetupWithSafeTensor(sd_safetensors_path):
+    migc_ckpt_path = 'pretrained_weights/MIGC_SD14.ckpt'
+    clip_model_path = 'migc_gui_weights/clip/text_encoder'
+    clip_tokenizer_path = 'migc_gui_weights/clip/tokenizer'
+    original_config_file='migc_gui_weights/v1-inference.yaml'
+    ctx = init_empty_weights if is_accelerate_available() else nullcontext
+    with ctx():
+        # text_encoder = CLIPTextModel(config)
+        text_encoder = CLIPTextModel.from_pretrained(clip_model_path)
+        tokenizer = CLIPTokenizer.from_pretrained(clip_tokenizer_path)
+    pipe = StableDiffusionMIGCPipeline.from_single_file(sd_safetensors_path,
+                                                    original_config_file=original_config_file,
+                                                    text_encoder=text_encoder,
+                                                    tokenizer=tokenizer,
+                                                    load_safety_checker=False)
+    print('Initializing pipeline')
+    pipe.attention_store = AttentionStore()
+    from migc.migc_utils import load_migc
+    load_migc(pipe.unet , pipe.attention_store,
+            migc_ckpt_path, attn_processor=MIGCProcessor)
+
+    pipe.scheduler = EulerDiscreteScheduler.from_config(pipe.scheduler.config)
+    return pipe
