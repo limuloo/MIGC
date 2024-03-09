@@ -39,5 +39,7 @@ if __name__ == '__main__':
     image = pipe(prompt_final, bboxes, num_inference_steps=50, guidance_scale=7.5, 
                     MIGCsteps=25, aug_phase_with_and=False, negative_prompt=negative_prompt).images[0]
     image.save('output.png')
+    image.show()
     image = pipe.draw_box_desc(image, bboxes[0], prompt_final[0][1:])
     image.save('anno_output.png')
+    image.show()
