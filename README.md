@@ -205,8 +205,7 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 **Step 3**: Download the [CetusMix](https://drive.google.com/file/d/1cmdif24erg3Pph3zIZaUoaSzqVEuEfYM/view?usp=sharing) model and place it in `migc_gui_weights/sd/cetusMix_Whalefall2.safetensors`. Alternatively, you can visit [civitai](https://civitai.com/) to download other models of your preference and place them in `migc_gui_weights/sd/`.
 
-\```
-
+```
 ├── pretrained_weights
 │   ├── MIGC_SD14.ckpt
 ├── migc_gui_weights
@@ -217,7 +216,7 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 │   │   │   ├── pytorch_model.bin
 ├── migc_gui
 │   ├── app.py
-\```
+```
 
 **Step 4**: `cd migc_gui`
 
