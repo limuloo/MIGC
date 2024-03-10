@@ -845,7 +845,7 @@ window.addEventListener("load", () => {
 
   let negative_conditioning = document.getElementById("negative-conditioning");
   State.negative_conditioning =
-    State.negative_conditioning || "watermark, text, blurry";
+    State.negative_conditioning || "worst quality, low quality, bad anatomy, watermark, text, blurry";
   negative_conditioning.value = State.negative_conditioning;
   negative_conditioning.addEventListener("input", (event) => {
     State.negative_conditioning = event.target.value;
