@@ -223,13 +223,16 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 **Step 5**: Launch the application by running `python app.py --port=3344`. You can now access the MIGC GUI through http://localhost:3344/. Feel free to switch the port as per your convenience.
 
 ## MIGC + LoRA
-MIGC can achieve powerful attribute-and-position control capabilities while combining with LoRA. We will open this feature when we release the code of MIGC-GUI.
+MIGC can achieve powerful attribute-and-position control capabilities while combining with LoRA. 🚀 We will integrate this function into MIGC-GUI in the future, so stay tuned! 🌟👀
 <p align="center">
   <img src="figures/migc_lora_id.png" alt="migc_lora_id" width="190" height="300"/>
   <img src="figures/migc_lora.png" alt="migc_lora" width="190" height="300"/>
   <img src="figures/migc_lora_anno.png" alt="migc_lora_anno" width="190" height="300"/>
   <img src="figures/migc_lora_gui_creation.png" alt="migc_lora_gui_creation" width="580" height="300"/>
 </p>
+
+## Ethical Considerations
+The broad spectrum of image creation possibilities offered by MIGC might present comparable ethical dilemmas to those encountered with numerous other methods of generating images from text.
 
 ## Contact us
 If you have any questions, feel free to contact me via email zdw1999@zju.edu.cn 
