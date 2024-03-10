@@ -10,4 +10,8 @@ outputv2.png
 huawei_bench_file
 inference_huawei.py
 HUAWEI
-migc_gui
+# migc_gui
+migc_gui_weights/clip/text_encoder/pytorch_model.bin
+migc_gui_weights/sd/*.safetensors
+migc_gui/output_images/xxx.png
+migc_gui/output_images/out.png

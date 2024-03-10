@@ -630,7 +630,8 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
             ca_scale=None,
             ea_scale=None,
             sac_scale=None,
-            aug_phase_with_and=False
+            aug_phase_with_and=False,
+            GUI_progress=None
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -781,6 +782,8 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
 
         with self.progress_bar(total=num_inference_steps) as progress_bar:
             for i, t in enumerate(timesteps):
+                if GUI_progress is not None:
+                    GUI_progress[0] = int((i + 1) / len(timesteps) * 100)
                 # expand the latents if we are doing classifier free guidance
                 latent_model_input = (
                     torch.cat([latents] * 2) if do_classifier_free_guidance else latents

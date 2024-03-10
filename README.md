@@ -9,7 +9,7 @@
 - [x] Code
 - [x] COCO-MIG Benchmark
 - [x] Pretrained Weights on SD1.4
-- [ ] WebUI
+- [x] WebUI
 - [ ] Colab Demo
 - [ ] Pretrained Weights on SDXL
 <a id="Gallery"></a>
@@ -19,7 +19,7 @@
 ![animation_creation](figures/animation_creation.png)
 
 
-
+<a id="Installation"></a>
 ## Installation
 
 ### Conda environment setup
@@ -194,10 +194,34 @@ We sampled [800 images](https://drive.google.com/drive/folders/1UyhNpZ099OTPy5IL
 
 
 ## MIGC-GUI
-We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to make art creation more convenient for users, and we will release our code in the next few days.
+We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to make art creation more convenient for users. 🔔This GUI is still being optimized. If you have any questions or suggestions, please contact me at zdw1999@zju.edu.cn.
 
 ![Demo1](videos/video1.gif)
 
+### Stat with MIGC-GUI
+**Step 1**: Download the [MIGC_SD14.ckpt](https://drive.google.com/file/d/1v5ik-94qlfKuCx-Cv1EfEkxNBygtsz0T/view?usp=drive_link) and place it in `pretrained_weights/MIGC_SD14.ckpt`. 🚨If you have already completed this step during the [Installation](#Installation) phase, feel free to skip it.
+
+**Step 2**: Download the [CLIPTextModel](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing) and place it in `migc_gui_weights/clip/text_encoder/pytorch_model.bin`.
+
+**Step 3**: Download the [CetusMix](https://drive.google.com/file/d/1cmdif24erg3Pph3zIZaUoaSzqVEuEfYM/view?usp=sharing) model and place it in `migc_gui_weights/sd/cetusMix_Whalefall2.safetensors`. Alternatively, you can visit [civitai](https://civitai.com/) to download other models of your preference and place them in `migc_gui_weights/sd/`.
+
+\```
+
+├── pretrained_weights
+│   ├── MIGC_SD14.ckpt
+├── migc_gui_weights
+│   ├── sd
+│   │   ├── cetusMix_Whalefall2.safetensors
+│   ├── clip
+│   │   ├── text_encoder
+│   │   │   ├── pytorch_model.bin
+├── migc_gui
+│   ├── app.py
+\```
+
+**Step 4**: `cd migc_gui`
+
+**Step 5**: Launch the application by running `python app.py --port=3344`. You can now access the MIGC GUI through http://localhost:3344/. Feel free to switch the port as per your convenience.
 
 ## MIGC + LoRA
 MIGC can achieve powerful attribute-and-position control capabilities while combining with LoRA. We will open this feature when we release the code of MIGC-GUI.

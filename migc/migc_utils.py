@@ -162,10 +162,11 @@ def load_migc(unet, attention_store, pretrained_model_name_or_path_or_dict: Unio
 
 
 def offlinePipelineSetupWithSafeTensor(sd_safetensors_path):
-    migc_ckpt_path = 'pretrained_weights/MIGC_SD14.ckpt'
-    clip_model_path = 'migc_gui_weights/clip/text_encoder'
-    clip_tokenizer_path = 'migc_gui_weights/clip/tokenizer'
-    original_config_file='migc_gui_weights/v1-inference.yaml'
+    project_dir = os.path.dirname(os.path.dirname(__file__))
+    migc_ckpt_path = os.path.join(project_dir, 'pretrained_weights/MIGC_SD14.ckpt')
+    clip_model_path = os.path.join(project_dir, 'migc_gui_weights/clip/text_encoder')
+    clip_tokenizer_path = os.path.join(project_dir, 'migc_gui_weights/clip/tokenizer')
+    original_config_file = os.path.join(project_dir, 'migc_gui_weights/v1-inference.yaml')
     ctx = init_empty_weights if is_accelerate_available() else nullcontext
     with ctx():
         # text_encoder = CLIPTextModel(config)
