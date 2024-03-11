@@ -201,7 +201,7 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 ![Demo1](videos/video1.gif)
 
-### Stat with MIGC-GUI
+### Start with MIGC-GUI
 **Step 1**: Download the [MIGC_SD14.ckpt](https://drive.google.com/file/d/1v5ik-94qlfKuCx-Cv1EfEkxNBygtsz0T/view?usp=drive_link) and place it in `pretrained_weights/MIGC_SD14.ckpt`. 🚨If you have already completed this step during the [Installation](#Installation) phase, feel free to skip it.
 
 **Step 2**: Download the [CLIPTextModel](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing) and place it in `migc_gui_weights/clip/text_encoder/pytorch_model.bin`.
