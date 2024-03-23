@@ -16,7 +16,8 @@ from diffusers.pipelines.stable_diffusion import (
 from diffusers.schedulers import KarrasDiffusionSchedulers
 from diffusers.utils import logging
 from PIL import Image, ImageDraw, ImageFont
-from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer
+from transformers import CLIPImageProcessor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
+import inspect
 import os
 import math
 import torch.nn as nn
@@ -236,18 +237,27 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
             scheduler: KarrasDiffusionSchedulers,
             safety_checker: StableDiffusionSafetyChecker,
             feature_extractor: CLIPImageProcessor,
+            image_encoder: CLIPVisionModelWithProjection = None,
             requires_safety_checker: bool = True,
     ):
-        super().__init__(
-            vae,
-            text_encoder,
-            tokenizer,
-            unet,
-            scheduler,
-            safety_checker,
-            feature_extractor,
-            requires_safety_checker,
-        )
+        # Get the parameter signature of the parent class constructor
+        parent_init_signature = inspect.signature(super().__init__)
+        parent_init_params = parent_init_signature.parameters
+        
+        # Dynamically build a parameter dictionary based on the parameters of the parent class constructor
+        init_kwargs = {
+            "vae": vae,
+            "text_encoder": text_encoder,
+            "tokenizer": tokenizer,
+            "unet": unet,
+            "scheduler": scheduler,
+            "safety_checker": safety_checker,
+            "feature_extractor": feature_extractor,
+            "requires_safety_checker": requires_safety_checker
+        }
+        if 'image_encoder' in parent_init_params.items():
+            init_kwargs['image_encoder'] = image_encoder
+        super().__init__(**init_kwargs)
 
     def _encode_prompt(
             self,
