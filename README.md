@@ -14,7 +14,8 @@
 - [x] Pretrained Weights on SD1.4
 - [x] WebUI
 - [x] Colab Demo
-- [ ] Pretrained Weights on SDXL
+- [ ] Pretrained Weights on SD1.5, SD2, SDXL
+- [ ] The training code will be released before May 2024
 <a id="Gallery"></a>
 ## Gallery
 ![attr_control](figures/attr_control.png)
