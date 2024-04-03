@@ -819,7 +819,7 @@ window.addEventListener("load", () => {
   });
 
   let NaiveFuserSteps_input = document.getElementById("NaiveFuserSteps");
-  State.NaiveFuserSteps = State.NaiveFuserSteps || 15;
+  State.NaiveFuserSteps = State.NaiveFuserSteps || 30;
   NaiveFuserSteps_input.value = State.NaiveFuserSteps;
   NaiveFuserSteps_input.addEventListener("input", (event) => {
     State.NaiveFuserSteps = event.target.value;
