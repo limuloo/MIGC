@@ -14,7 +14,7 @@
 - [x] Pretrained Weights on SD1.4
 - [x] WebUI
 - [x] Colab Demo
-- [ ] Pretrained Weights on SD1.5, SD2, SDXL
+- [ ] Pretrained Weights on SD1.5, SD2, SDXL (Note that MIGC_SD14.ckpt can be used directly for the SD1.5 model.)
 - [ ] The training code will be released before May 2024
 <a id="Gallery"></a>
 ## Gallery
