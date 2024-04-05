@@ -1,9 +1,10 @@
 
+# [CVPR2024 Highlight] MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis
+
 **COCO-MIG Bench:**  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/migc-multi-instance-generation-controller-for/conditional-text-to-image-synthesis-on-coco-1)](https://paperswithcode.com/sota/conditional-text-to-image-synthesis-on-coco-1?p=migc-multi-instance-generation-controller-for)
 
 
-**Online Demo:** 🔥🔥[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
-# [CVPR2024 Highlight] MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis
+**Online Demo on Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
 ### [[Paper]](https://arxiv.org/pdf/2402.05408.pdf)     [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
 **MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis**
 <br>_Dewei Zhou, You Li, Fan Ma, Xiaoting Zhang, Yi Yang_<br>
