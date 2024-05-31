@@ -16,7 +16,6 @@
 - [x] WebUI
 - [x] Colab Demo
 - [ ] Pretrained Weights on SD1.5, SD2, SDXL (Note that MIGC_SD14.ckpt can be used directly for the SD1.5 model.)
-- [ ] The training code will be released before May 2024
 <a id="Gallery"></a>
 ## Gallery
 ![attr_control](figures/attr_control.png)
@@ -71,6 +70,9 @@ The following is an example of the generated image based on stable diffusion v1.
   <img src="figures/diverse_base_model.png" alt="example" width="1000" height="230"/>
 </p>
 
+
+## Training
+Due to company requirements, we are unable to open the MIGC training code. For now, the best we can do is to provide the community with the script we use to process the COCO dataset data (i.e., obtaining each instance's box and caption). The relevant code is placed in the 'data_preparation' folder. If there are any changes in the future, such as if they grant permission, we will make it open source.
 
 
 ## COCO-MIG Bench
