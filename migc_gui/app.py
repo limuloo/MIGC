@@ -42,6 +42,7 @@ def process_request(req_data):
     data = req_data['prompt']
     
     InstanceNum = data['InstanceNum']
+    EditMode = data["EditMode"]
     width = data['width']
     height = data['height']
     num_inference_steps = int(data["num_inference_steps"])
@@ -92,7 +93,9 @@ def process_request(req_data):
                 num_inference_steps=num_inference_steps, guidance_scale=cfg,
                 width=width, height=height, MIGCsteps=MIGCsteps, NaiveFuserSteps=NaiveFuserSteps,
                 ca_scale=ca_scale, ea_scale=ea_scale,
-                sac_scale=sac_scale, negative_prompt=negative_prompt, GUI_progress=GUI_progress).images[0]
+                sac_scale=sac_scale, negative_prompt=negative_prompt, GUI_progress=GUI_progress,
+                use_sa_preserve=EditMode, sa_preserve=True
+                ).images[0]
     app_file_path = __file__
     app_folder = os.path.dirname(app_file_path)
     output_folder = os.path.join(app_folder, 'output_images')

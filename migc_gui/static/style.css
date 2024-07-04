@@ -413,6 +413,19 @@ input:focus {
   width: 128px;
 }
 
+#toggleCheckbox {
+  width: 30px;
+  height: 30px;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+.checkbox-container label {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .grounding-boxes-grid {
   width: 100%;
   height: 40px;

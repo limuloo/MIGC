@@ -122,6 +122,8 @@ function buildPrompt() {
     });
 
   prompt["InstanceNum"] = instance_num
+
+  prompt["EditMode"] = document.getElementById("EditMode").checked
   
   let positiveID = idx;
 

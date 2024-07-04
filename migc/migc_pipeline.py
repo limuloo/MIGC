@@ -28,7 +28,7 @@ import yaml
 import cv2
 import math
 from migc.migc_arch import MIGC, NaiveFuser
-
+from scipy.ndimage import uniform_filter, gaussian_filter
 
 logger = logging.get_logger(__name__)
 
@@ -87,7 +87,8 @@ class MIGCProcessor(nn.Module):
         self.attnstore = attnstore
         self.place_in_unet = place_in_unet
         self.not_use_migc = config['not_use_migc']
-        self.naive_fuser = NaiveFuser()
+        self.naive_fuser = NaiveFuser()        
+        self.embedding = {}
         if not self.not_use_migc:
             self.migc = MIGC(config['C'])
 
@@ -108,7 +109,9 @@ class MIGCProcessor(nn.Module):
             NaiveFuserSteps=-1,
             ca_scale=None,
             ea_scale=None,
-            sac_scale=None
+            sac_scale=None,
+            use_sa_preserve=False,
+            sa_preserve=False,
     ):
         batch_size, sequence_length, _ = hidden_states.shape
         assert(batch_size == 2, "We currently only implement sampling with batch_size=1, \
@@ -128,6 +131,8 @@ class MIGCProcessor(nn.Module):
             is_vanilla_cross = True
 
         is_cross = encoder_hidden_states is not None
+        
+        ori_hidden_states = hidden_states.clone()
 
         # Only Need Negative Prompt and Global Prompt.
         if is_cross and is_vanilla_cross:
@@ -141,6 +146,18 @@ class MIGCProcessor(nn.Module):
 
         # QKV Operation of Vanilla Self-Attention or Cross-Attention
         query = attn.to_q(hidden_states)
+        
+        if (
+            not is_cross
+            and use_sa_preserve
+            and timestep.item() in self.embedding
+            and self.place_in_unet == "up"
+        ):
+            hidden_states = torch.cat((hidden_states, torch.from_numpy(self.embedding[timestep.item()]).to(hidden_states.device)), dim=1)
+
+        if not is_cross and sa_preserve and self.place_in_unet == "up":
+            self.embedding[timestep.item()] = ori_hidden_states.cpu().numpy()
+
         encoder_hidden_states = (
             encoder_hidden_states
             if encoder_hidden_states is not None
@@ -258,6 +275,9 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
         if 'image_encoder' in parent_init_params.items():
             init_kwargs['image_encoder'] = image_encoder
         super().__init__(**init_kwargs)
+        
+        self.instance_set = set()
+        self.embedding = {}
 
     def _encode_prompt(
             self,
@@ -641,6 +661,9 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
             ea_scale=None,
             sac_scale=None,
             aug_phase_with_and=False,
+            sa_preserve=False,
+            use_sa_preserve=False,
+            clear_set=False,
             GUI_progress=None
     ):
         r"""
@@ -789,6 +812,33 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
 
         # 7. Denoising loop
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
+        
+        if clear_set:
+            self.instance_set = set()
+            self.embedding = {}
+
+        now_set = set()
+        for i in range(len(bboxes[0])):
+            now_set.add((tuple(bboxes[0][i]), prompt[0][i + 1]))
+
+        mask_set = (now_set | self.instance_set) - (now_set & self.instance_set)
+        self.instance_set = now_set
+
+        guidance_mask = np.full((4, height // 8, width // 8), 1.0)
+                
+        for bbox, _ in mask_set:
+            w_min = max(0, int(width * bbox[0] // 8) - 5)
+            w_max = min(width, int(width * bbox[2] // 8) + 5)
+            h_min = max(0, int(height * bbox[1] // 8) - 5)
+            h_max = min(height, int(height * bbox[3] // 8) + 5)
+            guidance_mask[:, h_min:h_max, w_min:w_max] = 0
+        
+        kernal_size = 5
+        guidance_mask = uniform_filter(
+            guidance_mask, axes = (1, 2), size = kernal_size
+        )
+        
+        guidance_mask = torch.from_numpy(guidance_mask).to(self.device).unsqueeze(0)
 
         with self.progress_bar(total=num_inference_steps) as progress_bar:
             for i, t in enumerate(timesteps):
@@ -814,7 +864,10 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
                                           'NaiveFuserSteps': NaiveFuserSteps,
                                           'ca_scale': ca_scale,
                                           'ea_scale': ea_scale,
-                                          'sac_scale': sac_scale}
+                                          'sac_scale': sac_scale,
+                                          'sa_preserve': sa_preserve,
+                                          'use_sa_preserve': use_sa_preserve}
+                
                 self.unet.eval()
                 noise_pred = self.unet(
                     latent_model_input,
@@ -835,6 +888,16 @@ class StableDiffusionMIGCPipeline(StableDiffusionPipeline):
                 )
                 latents = step_output.prev_sample
 
+                ori_input = latents.detach().clone()
+                if use_sa_preserve and i in self.embedding:
+                    latents = (
+                            latents * (1.0 - guidance_mask)
+                            + torch.from_numpy(self.embedding[i]).to(latents.device) * guidance_mask
+                        ).float()
+                
+                if sa_preserve:
+                    self.embedding[i] = ori_input.cpu().numpy()
+        
                 # call the callback, if provided
                 if i == len(timesteps) - 1 or (
                         (i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0

@@ -5,9 +5,23 @@
 
 
 **Online Demo on Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
-### [[Paper]](https://arxiv.org/pdf/2402.05408.pdf)     [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
-**MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis**
-<br>_Dewei Zhou, You Li, Fan Ma, Xiaoting Zhang, Yi Yang_<br>
+### [[MIGC Paper]](https://arxiv.org/pdf/2402.05408.pdf)  [[MIGC++ Paper]](https://arxiv.org/pdf/2407.02329)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
+
+## 🏫About us
+Thank you for your interest in this project. The project is supervised by the ReLER Lab at Zhejiang University’s College of Computer Science and Technology and [HUAWEI](https://www.huawei.com/cn/). ReLER was established by [Yang Yi](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en), a Qiu Shi Distinguished Professor at Zhejiang University. Our dedicated team of contributors includes [Dewei Zhou](https://scholar.google.com/citations?hl=en&user=4C_OwWMAAAAJ), [You Li](https://scholar.google.com/citations?user=2lRNus0AAAAJ&hl=en&oi=sra), [Ji Xie](https://github.com/HorizonWind2004), [Fan Ma](https://scholar.google.com/citations?hl=en&user=FyglsaAAAAAJ), [Zongxin Yang](https://scholar.google.com/citations?hl=en&user=8IE0CfwAAAAJ), [Yi Yang](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en).
+
+## 🔥🔥🔥 News 
+
+- 2024-07-03: Iterative editing mode "consistent-MIG" is **available**!
+
+![Demo2](videos/video2.gif)
+
+![alt text](figures/edit_button.jpg)
+
+Tick the button `EditMode` in area `IMAGE DIMENSIONS` and try it!
+
+- 2024-07-02: paper of [MIGC++](https://arxiv.org/pdf/2407.02329) is released!
+
 ## To Do List
 - [x] Project Page
 - [x] Code
@@ -15,6 +29,7 @@
 - [x] Pretrained Weights on SD1.4
 - [x] WebUI
 - [x] Colab Demo
+- [ ] Pretrained Weights of MIGC++
 - [ ] Pretrained Weights on SD1.5, SD2, SDXL (Note that MIGC_SD14.ckpt can be used directly for the SD1.5 model.)
 <a id="Gallery"></a>
 ## Gallery
@@ -69,6 +84,13 @@ The following is an example of the generated image based on stable diffusion v1.
 <p align="center">
   <img src="figures/diverse_base_model.png" alt="example" width="1000" height="230"/>
 </p>
+
+**[New] 🌈 Iterative Editing Mode**: The [Consistent-MIG](https://arxiv.org/pdf/2407.02329) algorithm improves the iterative MIG capabilities of MIGC facilitating modifying certain instances in MIG while preserving consistency in unmodified regions and maximizing the ID consistency of modified instances. You can explore the `python inference_consistent_mig.py` script to know the usage. For instance:
+
+<p align="center">
+  <img src="figures/consistent-mig.jpg" alt="example" width="700" height="160"/>
+</p>
+
 
 
 ## Training
@@ -229,6 +251,14 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 **Step 5**: Launch the application by running `python app.py --port=3344`. You can now access the MIGC GUI through http://localhost:3344/. Feel free to switch the port as per your convenience.
 
+## consistent-MIG in MIGC-GUI
+
+![Demo2](videos/video2.gif)
+
+![alt text](figures/edit_button.jpg)
+
+Tick the button `EditMode` in area `IMAGE DIMENSIONS` and try it!
+
 ## MIGC + LoRA
 MIGC can achieve powerful attribute-and-position control capabilities while combining with LoRA. 🚀 We will integrate this function into MIGC-GUI in the future, so stay tuned! 🌟👀
 <p align="center">
@@ -259,5 +289,15 @@ If you find this repository useful, please use the following BibTeX entry for ci
       eprint={2402.05408},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
+}
+
+@misc{zhou2024migcadvancedmultiinstancegeneration,
+      title={MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis}, 
+      author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
+      year={2024},
+      eprint={2407.02329},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.02329}, 
 }
 ```
