@@ -12,7 +12,7 @@ Thank you for your interest in this project. The project is supervised by the Re
 
 ## 🔥🔥🔥 News 
 
-- 2024-07-03: Iterative editing mode "consistent-MIG" is **available**!
+- 2024-07-03: Iterative editing mode ["Consistent-MIG"](https://arxiv.org/pdf/2407.02329) is **available**!
 
 ![Demo2](videos/video2.gif)
 
@@ -252,7 +252,7 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 **Step 5**: Launch the application by running `python app.py --port=3344`. You can now access the MIGC GUI through http://localhost:3344/. Feel free to switch the port as per your convenience.
 
-## consistent-MIG in MIGC-GUI
+## Consistent-MIG in MIGC-GUI
 
 ![Demo2](videos/video2.gif)
 
