@@ -16,7 +16,10 @@ Thank you for your interest in this project. The project is supervised by the Re
 
 ![Demo2](videos/video2.gif)
 
-![alt text](figures/edit_button.jpg)
+<p align="center">
+  <img src="figures/edit_button.jpg" alt="example" style="width: 50%; height: auto;"/>
+</p>
+
 
 Tick the button `EditMode` in area `IMAGE DIMENSIONS` and try it!
 
@@ -88,10 +91,8 @@ The following is an example of the generated image based on stable diffusion v1.
 **[New] 🌈 Iterative Editing Mode**: The [Consistent-MIG](https://arxiv.org/pdf/2407.02329) algorithm improves the iterative MIG capabilities of MIGC facilitating modifying certain instances in MIG while preserving consistency in unmodified regions and maximizing the ID consistency of modified instances. You can explore the `python inference_consistent_mig.py` script to know the usage. For instance:
 
 <p align="center">
-  <img src="figures/consistent-mig.jpg" alt="example" width="700" height="160"/>
+  <img src="figures/consistent-mig.jpg" alt="example"  />
 </p>
-
-
 
 ## Training
 Due to company requirements, we are unable to open the MIGC training code. For now, the best we can do is to provide the community with the script we use to process the COCO dataset data (i.e., obtaining each instance's box and caption). The relevant code is placed in the 'data_preparation' folder. If there are any changes in the future, such as if they grant permission, we will make it open source.
@@ -255,7 +256,9 @@ We have combined MIGC and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui) to 
 
 ![Demo2](videos/video2.gif)
 
-![alt text](figures/edit_button.jpg)
+<p align="center">
+  <img src="figures/edit_button.jpg" alt="example" style="width: 50%; height: auto;"/>
+</p>
 
 Tick the button `EditMode` in area `IMAGE DIMENSIONS` and try it!
 
