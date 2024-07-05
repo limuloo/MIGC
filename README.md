@@ -7,9 +7,6 @@
 **Online Demo on Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
 ### [[MIGC Paper]](https://arxiv.org/pdf/2402.05408.pdf)  [[MIGC++ Paper]](https://arxiv.org/pdf/2407.02329)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
 
-## 🏫About us
-Thank you for your interest in this project. The project is supervised by the ReLER Lab at Zhejiang University’s College of Computer Science and Technology and [HUAWEI](https://www.huawei.com/cn/). ReLER was established by [Yang Yi](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en), a Qiu Shi Distinguished Professor at Zhejiang University. Our dedicated team of contributors includes [Dewei Zhou](https://scholar.google.com/citations?hl=en&user=4C_OwWMAAAAJ), [You Li](https://scholar.google.com/citations?user=2lRNus0AAAAJ&hl=en&oi=sra), [Ji Xie](https://github.com/HorizonWind2004), [Fan Ma](https://scholar.google.com/citations?hl=en&user=FyglsaAAAAAJ), [Zongxin Yang](https://scholar.google.com/citations?hl=en&user=8IE0CfwAAAAJ), [Yi Yang](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en).
-
 ## 🔥🔥🔥 News 
 
 - 2024-07-03: Iterative editing mode ["Consistent-MIG"](https://arxiv.org/pdf/2407.02329) is **available**!
@@ -274,13 +271,15 @@ MIGC can achieve powerful attribute-and-position control capabilities while comb
 ## Ethical Considerations
 The broad spectrum of image creation possibilities offered by MIGC might present comparable ethical dilemmas to those encountered with numerous other methods of generating images from text.
 
+
+## 🏫About us
+Thank you for your interest in this project. The project is supervised by the ReLER Lab at Zhejiang University’s College of Computer Science and Technology and [HUAWEI](https://www.huawei.com/cn/). ReLER was established by [Yang Yi](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en), a Qiu Shi Distinguished Professor at Zhejiang University. Our dedicated team of contributors includes [Dewei Zhou](https://scholar.google.com/citations?hl=en&user=4C_OwWMAAAAJ), [You Li](https://scholar.google.com/citations?user=2lRNus0AAAAJ&hl=en&oi=sra), [Ji Xie](https://github.com/HorizonWind2004), [Fan Ma](https://scholar.google.com/citations?hl=en&user=FyglsaAAAAAJ), [Zongxin Yang](https://scholar.google.com/citations?hl=en&user=8IE0CfwAAAAJ), [Yi Yang](https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en).
+
 ## Contact us
 If you have any questions, feel free to contact me via email zdw1999@zju.edu.cn 
 
 ## Acknowledgements
 Our work is based on [stable diffusion](https://github.com/Stability-AI/StableDiffusion), [diffusers](https://github.com/huggingface/diffusers), [CLIP](https://github.com/openai/CLIP), and [GLIGEN-GUI](https://github.com/mut-ex/gligen-gui). We appreciate their outstanding contributions.
-
-
 
 ## Citation
 If you find this repository useful, please use the following BibTeX entry for citation.
