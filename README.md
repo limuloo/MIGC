@@ -13,13 +13,6 @@
 
 ![Demo2](videos/video2.gif)
 
-<p align="center">
-  <img src="figures/edit_button.jpg" alt="example" style="width: 50%; height: auto;"/>
-</p>
-
-
-Tick the button `EditMode` in area `IMAGE DIMENSIONS` and try it!
-
 - 2024-07-02: paper of [MIGC++](https://arxiv.org/pdf/2407.02329) is released!
 
 ## To Do List
