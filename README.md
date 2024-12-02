@@ -277,22 +277,21 @@ Our work is based on [stable diffusion](https://github.com/Stability-AI/StableDi
 ## Citation
 If you find this repository useful, please use the following BibTeX entry for citation.
 ```
-@misc{zhou2024migc,
-      title={MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis}, 
-      author={Dewei Zhou and You Li and Fan Ma and Xiaoting Zhang and Yi Yang},
-      year={2024},
-      eprint={2402.05408},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{Zhou2024MIGCMG,
+  title={MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis},
+  author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
+  journal={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2024},
+  pages={6818-6828},
+  url={https://api.semanticscholar.org/CorpusID:267547419}
 }
 
-@misc{zhou2024migcadvancedmultiinstancegeneration,
-      title={MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis}, 
-      author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
-      year={2024},
-      eprint={2407.02329},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2407.02329}, 
+@article{Zhou2024MIGCAM,
+  title={MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis},
+  author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2407.02329},
+  url={https://api.semanticscholar.org/CorpusID:270878014}
 }
 ```
