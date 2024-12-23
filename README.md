@@ -1,5 +1,6 @@
 
-# [CVPR2024 Highlight] MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis
+# [ CVPR2024 Highlight ] MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis
+# [ TPAMI2024 ] MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis
 
 **COCO-MIG Bench:**  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/migc-multi-instance-generation-controller-for/conditional-text-to-image-synthesis-on-coco-1)](https://paperswithcode.com/sota/conditional-text-to-image-synthesis-on-coco-1?p=migc-multi-instance-generation-controller-for)
 
@@ -11,7 +12,7 @@
 
 - 2024-07-03: Iterative editing mode "Consistent-MIG" in [MIGC++](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) is **available**!
 - 2024-11-24: Our paper ["MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis"](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) has been accepted by TPAMI.
-- 2024-12-23: We have released the pretrained weights of MIGC++, which can **simultaneously use masks and boxes to specify instance locations.**
+- 2024-12-23: We have released the [pretrained weights of MIGC++](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing), which can **simultaneously use masks and boxes to specify instance locations.**
 
 ![Demo2](videos/video2.gif)
 
@@ -55,7 +56,7 @@ Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/1v5ik-94qlf
 ├── bench_file
 │   ├── ...
 ```
-If you want to use MIGC++, please download the MIGC++_SD14.ckpt and put it under the 'pretrained_weights' folder.
+If you want to use MIGC++, please download the [MIGC++_SD14.ckpt](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing) and put it under the 'pretrained_weights' folder.
 Note: Due to our collaborator's request, I can't release the original weights. These are re-implemented weights, trained with a smaller batch size.
 ```
 ├── pretrained_weights
