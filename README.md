@@ -56,7 +56,7 @@ Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/1v5ik-94qlf
 ├── bench_file
 │   ├── ...
 ```
-If you want to use MIGC++, please download the [MIGC++_SD14.ckpt](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing) and put it under the 'pretrained_weights' folder.
+If you want to use MIGC++, please download the [MIGC++_SD14.ckpt (191M)](https://drive.google.com/file/d/1KI8Ih7SHISG9v9zRL1xhDIBsPjDHqPxI/view?usp=drive_link) and put it under the 'pretrained_weights' folder.
 Note: Due to our collaborator's request, I can't release the original weights. These are re-implemented weights, trained with a smaller batch size.
 ```
 ├── pretrained_weights
