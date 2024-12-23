@@ -16,8 +16,6 @@
 
 ![Demo2](videos/video2.gif)
 
-- 2024-07-02: paper of [MIGC++](https://arxiv.org/pdf/2407.02329) is released!
-
 ## To Do List
 - [x] Project Page
 - [x] Code
