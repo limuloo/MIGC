@@ -5,11 +5,13 @@
 
 
 **Online Demo on Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
-### [[MIGC Paper]](https://arxiv.org/pdf/2402.05408.pdf)  [[MIGC++ Paper]](https://arxiv.org/pdf/2407.02329)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
+### [[MIGC Paper]](https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_MIGC_Multi-Instance_Generation_Controller_for_Text-to-Image_Synthesis_CVPR_2024_paper.pdf)  [[MIGC++ Paper]](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
 
 ## 🔥🔥🔥 News 
 
-- 2024-07-03: Iterative editing mode ["Consistent-MIG"](https://arxiv.org/pdf/2407.02329) is **available**!
+- 2024-07-03: Iterative editing mode "Consistent-MIG" in [MIGC++](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) is **available**!
+- 2024-11-24: Our paper ["MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis"](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) has been accepted by TPAMI.
+- 2024-12-23: We have released the pretrained weights of MIGC++, which can **simultaneously use masks and boxes to specify instance locations.**
 
 ![Demo2](videos/video2.gif)
 
@@ -22,7 +24,9 @@
 - [x] Pretrained Weights on SD1.4
 - [x] WebUI
 - [x] Colab Demo
-- [ ] Pretrained Weights of MIGC++
+- [x] Consistent-MIG algorithm in [MIGC++](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U)
+- [x] Pretrained Weights of MIGC++ for Simultaneous Box and Mask Control
+- [ ] Pretrained Weights of MIGC++ for Simultaneous Image and Text Control (coming soon)
 - [ ] Pretrained Weights on SD1.5, SD2, SDXL (Note that MIGC_SD14.ckpt can be used directly for the SD1.5 model.)
 <a id="Gallery"></a>
 ## Gallery
@@ -51,9 +55,18 @@ Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/1v5ik-94qlf
 ├── bench_file
 │   ├── ...
 ```
-
+If you want to use MIGC++, please download the MIGC++_SD14.ckpt and put it under the 'pretrained_weights' folder.
+Note: Due to our collaborator's request, I can't release the original weights. These are re-implemented weights, trained with a smaller batch size.
+```
+├── pretrained_weights
+│   ├── MIGC++_SD14.ckpt
+├── migc
+│   ├── ...
+├── bench_file
+│   ├── ...
+```
 ## Single Image Generation
-By using the following command, you can quickly generate an image with MIGC.
+By using the following command, you can quickly generate an image with **MIGC**.
 ```
 CUDA_VISIBLE_DEVICES=0 python inference_single_image.py
 ```
@@ -62,6 +75,16 @@ The following is an example of the generated image based on stable diffusion v1.
 <p align="center">
   <img src="figures/MIGC_SD14_out.png" alt="example" width="200" height="200"/>
   <img src="figures/MIGC_SD14_out_anno.png" alt="example_annotation" width="200" height="200"/>
+</p>
+
+By using the following command, you can quickly generate an image with **MIGC++**, where both the box and mask are used to control the instance location.
+```
+CUDA_VISIBLE_DEVICES=0 python migc_plus_inference_single_image.py
+```
+The following are examples of the generated images using MIGC++.
+
+<p align="center">
+  <img src="figures/migc++_output.png" alt="example" width="1000" height="300"/>
 </p>
 
 🚀 **Enhanced Attribute Control**: For those seeking finer control over attribute management, consider exploring the `python inferencev2_single_image.py` script. This advanced version, `InferenceV2`, offers a significant improvement in mitigating attribute leakage issues. By accepting a slight increase in inference time, it enhances the Instance Success Ratio from 66% to an impressive 68% on COCO-MIG Benchmark. It is worth mentioning that increasing the `NaiveFuserSteps` in `inferencev2_single_image.py` can also gain stronger attribute control.
@@ -277,21 +300,19 @@ Our work is based on [stable diffusion](https://github.com/Stability-AI/StableDi
 ## Citation
 If you find this repository useful, please use the following BibTeX entry for citation.
 ```
-@article{Zhou2024MIGCMG,
-  title={MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis},
-  author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
-  journal={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2024},
-  pages={6818-6828},
-  url={https://api.semanticscholar.org/CorpusID:267547419}
+@inproceedings{zhou2024migc,
+  title={Migc: Multi-instance generation controller for text-to-image synthesis},
+  author={Zhou, Dewei and Li, You and Ma, Fan and Zhang, Xiaoting and Yang, Yi},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={6818--6828},
+  year={2024}
 }
 
-@article{Zhou2024MIGCAM,
-  title={MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis},
-  author={Dewei Zhou and You Li and Fan Ma and Zongxin Yang and Yi Yang},
-  journal={ArXiv},
+@article{zhou2024migc++,
+  title={Migc++: Advanced multi-instance generation controller for image synthesis},
+  author={Zhou, Dewei and Li, You and Ma, Fan and Yang, Zongxin and Yang, Yi},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
   year={2024},
-  volume={abs/2407.02329},
-  url={https://api.semanticscholar.org/CorpusID:270878014}
+  publisher={IEEE}
 }
 ```
