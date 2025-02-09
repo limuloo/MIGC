@@ -6,13 +6,13 @@
 
 
 **Online Demo on Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rkhi7EylHXACbzfXvWiblM4m1BCGOX5-?usp=sharing)
-### [[MIGC Paper]](https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_MIGC_Multi-Instance_Generation_Controller_for_Text-to-Image_Synthesis_CVPR_2024_paper.pdf)  [[MIGC++ Paper]](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
+### [[MIGC Paper]](https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_MIGC_Multi-Instance_Generation_Controller_for_Text-to-Image_Synthesis_CVPR_2024_paper.pdf)  [[MIGC++ Paper]](https://ieeexplore.ieee.org/document/10794618)    [[Project Page]](https://migcproject.github.io/)    [[ZhiHu(知乎)]](https://zhuanlan.zhihu.com/p/686367982)
 
 ## 🔥🔥🔥 News 
 
-- 2024-07-03: Iterative editing mode "Consistent-MIG" in [MIGC++](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) is **available**!
-- 2024-11-24: Our paper ["MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis"](https://www.computer.org/csdl/journal/tp/5555/01/10794618/22AQoBwTa4U) has been accepted by TPAMI.
-- 2024-12-23: We have released the [pretrained weights of MIGC++](https://drive.google.com/file/d/1Z_BFepTXMbe-cib7Lla5A224XXE1mBcS/view?usp=sharing), which can **simultaneously use masks and boxes to specify instance locations.**
+- 2024-07-03: Iterative editing mode "Consistent-MIG" in [MIGC++](https://ieeexplore.ieee.org/document/10794618) is **available**!
+- 2024-11-24: Our paper ["MIGC++: Advanced Multi-Instance Generation Controller for Image Synthesis"](https://ieeexplore.ieee.org/document/10794618) has been accepted by TPAMI.
+- 2024-12-23: We have released the [pretrained weights of MIGC++](https://ieeexplore.ieee.org/document/10794618), which can **simultaneously use masks and boxes to specify instance locations.**
 
 ![Demo2](videos/video2.gif)
 
