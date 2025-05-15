@@ -45,7 +45,7 @@ pip install -r requirement.txt
 pip install -e .
 ```
 ### Checkpoints
-Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/1v5ik-94qlfKuCx-Cv1EfEkxNBygtsz0T/view?usp=sharing) and put it under the 'pretrained_weights' folder.
+Download the [MIGC_SD14.ckpt (219M)](https://drive.google.com/file/d/107fnQ9Fpu5K0UtqnHlKja7hqe-GwjAmz/view?usp=sharing) and put it under the 'pretrained_weights' folder.
 ```
 ├── pretrained_weights
 │   ├── MIGC_SD14.ckpt
